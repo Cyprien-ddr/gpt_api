@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Insign Web Tools</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="twig/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="twig/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">Insign IA Lab</a></h1>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="generic.html">Generic</a></li>
+								<li><a href="elements.html">Elements</a></li>
+								<li><a href="#">Log In</a></li>
+								<li><a href="#">Sign Up</a></li>
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Banner -->
+					<section id="banner">
+						<div class="inner">
+							<h2>Insign IA Lab</h2>
+							<p>IA générative sur analyse de documents (LLM : openai)</p>
+						</div>
+					</section>
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<!-- One -->
+							<section id="one" class="wrapper spotlight style1">
+								<div class="inner">
+									<a href="#" class="image"><img src="twig/images/pic01.jpg" alt="" /></a>
+									<div class="content">
+
+										<h2 class="major">Transférez des documents à analyser</h2>
+										<p>
+                      <form id="wget" method="post" action="#" enctype="multipart/form-data">
+                        <div class="fields">
+                          <div class="field">
+                            <label for="name"></label>
+                            <input type="file" name="files[]" id="files" multiple />
+                          </div>
+                        </div>
+                        <ul class="actions">
+                          <li><input type="submit" id="upload" value="Transférer" /></li>
+                        </ul>
+                      </form>
+                    </p>
+{% if uploaded_files is not empty %}
+                    <h2 class="major">Documents transmis</h2>
+{% for key,value in uploaded_files %}
+                    
+                    <div>{{ value }}</div>
+{% endfor %}
+                        <form id="delete_form" method="post" action="#">
+                        <ul class="actions">
+                            <input type="hidden" name="delete" />
+                          <li><input type="submit" value="Supprimer" /></li>
+                        </ul>
+                        </form>
+{% endif %}
+									</div>
+								</div>
+							</section>
+						<!-- Two -->
+							<section id="two" class="wrapper alt spotlight style2">
+								<div class="inner">
+									<a href="#" class="image"><img src="twig/images/pic02.jpg" alt="" /></a>
+									<div class="content">
+										<h2 class="major">Votre demande</h2>
+										<p>
+                      <form id="query" method="post" action="#result">
+                        <div class="fields">
+                          <div class="field">
+                            <label for="name">Prompt</label>
+                            <input type="text" name="query" id="query" value="{{ query }}" placeholder="Faire un résumé" />
+                          </div>
+                        </div>
+                        <ul class="actions">
+                          <li><input type="submit" value=">>" /></li>
+                        </ul>
+                      </form>
+                    </p>
+                    
+                    {% if comments is not empty %}
+                    <div id="comments"><label>Logs système</label>
+                    <textarea style='height:40px; padding:5px; background-color: black' readonly>{{ comments|nl2br }}
+                    </textarea>
+                    </div>
+                    <br>
+                    {% endif %}
+
+
+
+                    {% if result is not empty %}
+                    <div id="result"><label>Réponse</label>
+                      {{ result|nl2br }}
+                    </div>
+                    {% endif %}
+                    
+									</div>
+								</div>
+							</section>
+
+
+						
+
+					</section>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="inner">
+
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="twig/assets/js/jquery.min.js"></script>
+			<script src="twig/assets/js/jquery.scrollex.min.js"></script>
+			<script src="twig/assets/js/browser.min.js"></script>
+			<script src="twig/assets/js/breakpoints.min.js"></script>
+			<script src="twig/assets/js/util.js"></script>
+      <script src="twig/assets/js/jquery.validate.min.js"></script>
+			<script src="twig/assets/js/main.js"></script>
+      <script src="twig/assets/js/insign.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,39 @@
+version: '2'
+
+networks:
+  traefik:
+    external: true
+
+services:
+  application:
+    image: debian:buster-slim
+    volumes:
+      - ./:/var/www/web/
+    tty: true
+
+  php:
+    image: insignagency/php:php7.3
+    volumes_from:
+      - application
+    labels:
+      - traefik.enable=false
+    networks:
+      - traefik
+      - default
+
+  apache:
+    image: insignagency/apache
+    volumes_from:
+      - application
+    links:
+      - php
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik
+      - "traefik.http.routers.apache-https-webtools.rule=Host(`webtools.insign.fr`)"
+      - "traefik.http.routers.apache-https-webtools.tls=true"
+      - "traefik.http.routers.apache-webtools.rule=Host(`webtools.insign.fr`)"
+    networks:
+      - traefik
+      - default
+

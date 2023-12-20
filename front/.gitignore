@@ -1,0 +1,4 @@
+vendor/**
+client_credentials.json
+api_token.txt
+env.php

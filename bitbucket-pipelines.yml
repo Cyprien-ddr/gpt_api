@@ -1,0 +1,11 @@
+image: python:3.10
+pipelines:
+  default:
+    - step:
+        name: Version
+        script:
+          - python --version
+    - step:
+        name: Requirements installation
+        script:
+          - pip install -r requirements.txt
